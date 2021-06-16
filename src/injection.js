@@ -11,9 +11,18 @@ export function inject(WrappedComponent, inputs, outputs) {
   const [_inputs, _outputs, keys] = normalize(WrappedComponent, inputs, outputs)
 
   function AlfaInjectedComponent(props, context) {
-    let _props = getProps(props, _inputs, _outputs, context && context.alfaStore, keys)
+    let _props = getProps(
+      props,
+      _inputs,
+      _outputs,
+      context && context.alfaStore,
+      keys
+    )
 
-    if (WrappedComponent.prototype.isReactComponent) {
+    if (
+      WrappedComponent.prototype &&
+      WrappedComponent.prototype.isReactComponent
+    ) {
       // Create an element if it's react component.
       return createElement(WrappedComponent, _props)
     } else {
