@@ -46,11 +46,11 @@ const config = {
 if (NODE_ENV === 'production') {
   config.plugins.push(
     uglify({
+      warnings: false,
       compress: {
         pure_getters: true,
         unsafe: true,
-        unsafe_comps: true,
-        warnings: false
+        unsafe_comps: true
       }
     })
   )
